@@ -59,6 +59,15 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: nuxt
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .output/public
+            .nuxt
+          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('.output/public') }}
+          restore-keys: |
+            ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --include=dev
       - name: Static HTML export with Nuxt
