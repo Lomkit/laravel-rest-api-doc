@@ -1,3 +1,5 @@
+const path = require('path');
+
 export default defineNuxtConfig({
   // https://github.com/nuxt-themes/docus
   extends: '@nuxt-themes/docus',
@@ -9,5 +11,11 @@ export default defineNuxtConfig({
     '@nuxt/devtools',
     // https://nuxt.studio/docs/projects/setup#requirements-to-use-the-studio-editor
     '@nuxthq/studio'
-  ]
+  ],
+
+  nitro: {
+    output: {
+      publicDir: path.join(__dirname, 'dist')
+    }
+  }
 })
