@@ -68,6 +68,11 @@ jobs:
 #           key: ${{ runner.os }}-nuxt-build-${{ hashFiles('.output/public') }}
 #           restore-keys: |
 #             ${{ runner.os }}-nuxt-build-
+      - name: Fix permissions
+        run: |
+          chmod -c -R +rX "./" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
