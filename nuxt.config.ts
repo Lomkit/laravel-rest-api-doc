@@ -11,5 +11,9 @@ export default defineNuxtConfig({
     '@nuxt/devtools',
     // https://nuxt.studio/docs/projects/setup#requirements-to-use-the-studio-editor
     '@nuxthq/studio'
-  ]
+  ],
+
+  publicRuntimeConfig: {
+    NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS
+  }
 })
