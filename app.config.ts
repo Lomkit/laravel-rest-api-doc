@@ -1,22 +1,17 @@
 export default defineAppConfig({
   docus: {
-    title: 'Docus',
-    description: 'The best place to start your documentation.',
-    image: 'https://user-images.githubusercontent.com/904724/185365452-87b7ca7b-6030-4813-a2db-5e65c785bf88.png',
+    title: 'Laravel Rest Api',
+    description: 'Powerfull API fully integrated with Laravel',
+    image: 'https://avatars.githubusercontent.com/u/81576189?s=200&v=4',
+    url: 'https://laravel-rest-api.lomkit.com',
     socials: {
-      twitter: 'nuxt_js',
-      github: 'nuxt-themes/docus',
-      nuxt: {
-        label: 'Nuxt',
-        icon: 'simple-icons:nuxtdotjs',
-        href: 'https://nuxt.com'
-      }
+      github: 'lomkit/laravel-rest-api'
     },
     github: {
-      dir: '.starters/default/content',
-      branch: 'main',
-      repo: 'docus',
-      owner: 'nuxt-themes',
+      dir: '',
+      branch: 'master',
+      repo: 'laravel-rest-api-doc',
+      owner: 'lomkit',
       edit: true
     },
     aside: {
@@ -30,6 +25,7 @@ export default defineAppConfig({
     },
     header: {
       logo: true,
+      title: 'Laravel Rest Api',
       showLinkIcon: true,
       exclude: [],
       fluid: true
