@@ -10,10 +10,19 @@ export default defineNuxtConfig({
     // https://github.com/nuxt/devtools
     '@nuxt/devtools',
     // https://nuxt.studio/docs/projects/setup#requirements-to-use-the-studio-editor
-    '@nuxthq/studio'
+    '@nuxthq/studio',
+    // https://google-analytics.nuxtjs.org
+    '@nuxtjs/google-analytics'
   ],
 
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+  },
+
   publicRuntimeConfig: {
-    NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS
+    NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS,
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
   }
 })
