@@ -16,11 +16,10 @@ export default defineNuxtConfig({
   ],
 
   gtag: {
-    id: process.env.NUXT_PUBLIC_GTAG_ID,
+    id: 'G-3NTHH4D2GH'
   },
 
   publicRuntimeConfig: {
-    NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS,
-    NUXT_PUBLIC_GTAG_ID: process.env.NUXT_PUBLIC_GTAG_ID
+    NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS
   }
 })
