@@ -14,7 +14,6 @@
     "@nuxt/devtools": "^0.6.7",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxthq/studio": "^0.13.4",
-    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/plausible": "^0.2.1",
     "@types/node": "^20.4.0",
     "eslint": "^8.44.0",
