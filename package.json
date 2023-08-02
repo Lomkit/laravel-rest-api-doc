@@ -17,7 +17,9 @@
     "@nuxtjs/plausible": "^0.2.1",
     "@types/node": "^20.4.0",
     "eslint": "^8.44.0",
-    "nuxt": "^3.6.2",
-    "nuxt-gtag": "^0.5.7"
+    "nuxt": "^3.6.2"
+  },
+  "dependencies": {
+    "vue-gtag": "^2.0.1"
   }
 }
