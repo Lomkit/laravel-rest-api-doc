@@ -10,9 +10,7 @@ export default defineNuxtConfig({
     // https://github.com/nuxt/devtools
     '@nuxt/devtools',
     // https://nuxt.studio/docs/projects/setup#requirements-to-use-the-studio-editor
-    '@nuxthq/studio',
-    // https://nuxt.com/modules/gtag
-    'nuxt-gtag'
+    '@nuxthq/studio'
   ],
 
   publicRuntimeConfig: {
