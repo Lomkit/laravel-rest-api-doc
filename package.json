@@ -20,6 +20,7 @@
     "nuxt": "^3.6.2"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^3.0.0",
     "vue-gtag": "^2.0.1"
   }
 }

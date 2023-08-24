@@ -10,10 +10,16 @@ export default defineNuxtConfig({
     // https://github.com/nuxt/devtools
     '@nuxt/devtools',
     // https://nuxt.studio/docs/projects/setup#requirements-to-use-the-studio-editor
-    '@nuxthq/studio'
+    '@nuxthq/studio',
+    // https://nuxt.com/modules/robots
+    '@nuxtjs/robots'
   ],
 
   publicRuntimeConfig: {
     NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS
+  },
+
+  robots: {
+    //
   }
 })
