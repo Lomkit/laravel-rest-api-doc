@@ -12,7 +12,9 @@ export default defineNuxtConfig({
     // https://nuxt.studio/docs/projects/setup#requirements-to-use-the-studio-editor
     '@nuxthq/studio',
     // https://nuxt.com/modules/robots
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    // https://www.npmjs.com/package/@funken-studio/sitemap-nuxt-3 -- TODO: replace with official when nuxt3 support released
+    ['@funken-studio/sitemap-nuxt-3', { generateOnBuild: true }]
   ],
 
   publicRuntimeConfig: {
@@ -21,5 +23,9 @@ export default defineNuxtConfig({
 
   robots: {
     //
+  },
+
+  sitemap: {
+    hostname: 'https://laravel-rest-api.lomkit.com'
   }
 })
