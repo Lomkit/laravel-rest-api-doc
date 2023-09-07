@@ -27,5 +27,11 @@ export default defineNuxtConfig({
 
   sitemap: {
     hostname: 'https://laravel-rest-api.lomkit.com'
+  },
+
+  nitro: {
+    prerender: {
+      autoSubfolderIndex: false
+    }
   }
 })
