@@ -21,6 +21,14 @@ export default defineNuxtConfig({
     NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS
   },
 
+  content: {
+    highlight: {
+      preload: [
+        'php'
+      ]
+    }
+  },
+
   robots: {
     //
   },
