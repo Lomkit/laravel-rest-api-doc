@@ -43,7 +43,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
@@ -53,11 +53,13 @@ jobs:
           NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
       - name: Static HTML export with Nuxt
         env:
-          NUXT_PUBLIC_GTAG_ID: ${{ secrets.NUXT_PUBLIC_GTAG_ID }}
-          NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
-          NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
           NITRO_PRESET: github-pages
-        run: ${{ steps.detect-package-manager.outputs.manager }} run generate
+        run: | 
+          touch .env
+          echo NUXT_PUBLIC_GTAG_ID=${{ secrets.NUXT_PUBLIC_GTAG_ID }} >> .env
+          echo NUXT_UI_PRO_LICENSE=${{ secrets.NUXT_UI_PRO_LICENSE }} >> .env
+          echo NUXT_PUBLIC_SITE_URL=${{ secrets.NUXT_PUBLIC_SITE_URL }} >> .env
+          ${{ steps.detect-package-manager.outputs.manager }} run generate
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
