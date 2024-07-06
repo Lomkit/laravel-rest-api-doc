@@ -53,6 +53,7 @@ jobs:
           NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
       - name: Static HTML export with Nuxt
         env:
+          NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
           NITRO_PRESET: github-pages
         run: | 
           touch .env
