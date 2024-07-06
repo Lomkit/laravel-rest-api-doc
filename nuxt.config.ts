@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     strict: false
   },
   site: {
-    url: 'https://laravel-rest-api.lomkit.com',
+    url: process.env.NUXT_PUBLIC_SITE_URL,
   },
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID
