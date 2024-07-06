@@ -37,6 +37,9 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/api/search.json': { prerender: true }
   },
+  uiPro: {
+    license: process.env.NUXT_UI_PRO_LICENSE
+  },
   devtools: {
     enabled: true
   },
@@ -44,7 +47,10 @@ export default defineNuxtConfig({
     strict: false
   },
   site: {
-    url: 'https://laravel-rest-api.lomkit.com',
+    url: process.env.NUXT_PUBLIC_SITE_URL,
+  },
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID
   },
   future: {
     compatibilityVersion: 4
