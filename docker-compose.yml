@@ -2,11 +2,10 @@ services:
   nuxt:
     build:
       context: .
-    image: nuxt_dev
-    container_name: nuxt_dev
     command: npm run dev
     volumes:
-      - .:/frontend
-      - /frontend/node_modules
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "3000:3000"
+      - "4000:4000"

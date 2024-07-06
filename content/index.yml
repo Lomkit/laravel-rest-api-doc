@@ -1,0 +1,122 @@
+title: 'Laravel Rest Api'
+description: Generate API in seconds with Laravel.
+navigation: false
+hero:
+  title: 'Generate API in seconds.'
+  description: 'Fully integrated with Laravel, take the advantage of a powerful API without destructuring your codebase.'
+  orientation: horizontal
+  links:
+    - label: Get started
+      icon: i-heroicons-arrow-right-20-solid
+      trailing: true
+      to: '/getting-started/installation'
+      size: lg
+    - label: Star on Github
+      icon: i-mdi-github
+      size: lg
+      color: gray
+      to: https://github.com/lomkit/laravel-rest-api
+      target: _blank
+  code: |
+    ```bash [Terminal]
+    composer require lomkit/laravel-rest-api
+    php artisan rest:quick-start
+    ```
+features:
+  title: 'Start your next project with a powerful API'
+  items:
+    - title: 'Laravel built-in'
+      description: 'Fully integrates with Laravel (Gates / relationships / ...)'
+      icon: 'i-mdi-laravel'
+    - title: 'Customizable'
+      description: 'Benefit the power of full customization for your needs.'
+      icon: 'i-mdi-cog-outline'
+    - title: 'Powerful'
+      description: 'The search operation gives your API consumers a lot of possibilities.'
+      icon: 'i-mdi-flash-outline'
+    - title: 'Secured'
+      description: 'Control what your API exposes and avoid unwanted actions.'
+      icon: 'i-mdi-lock-outline'
+    - title: 'Documentation'
+      description: 'Automatic documentation generation with a single command.'
+      icon: 'i-mdi-file-document-box-multiple-outline'
+    - title: 'Reduce API calls'
+      description: 'The mutate endpoints allows you to operate multiple operations in a single call.'
+      icon: 'i-mdi-call-split'
+onboardings:
+  - title: 'First, define your resource'
+    terminal: |
+      ```bash [Terminal]
+        php artisan rest:resource UserResource
+      ```
+    links:
+      - label: 'Configure your resource'
+        trailingIcon: 'i-heroicons-arrow-right-20-solid'
+        color: 'gray'
+        to: '/resources/basics'
+        size: lg
+    code: |
+      ```php [UserResource.php]
+        <?php
+
+        namespace App\Rest\Resources;
+
+        use App\Rest\Resource;
+
+        class UserResource extends Resource
+        {
+          /**
+          * The model the resource corresponds to.
+          *
+          * @var class-string<\Illuminate\Database\Eloquent\Model>
+          */
+          public static $model = \App\Models\User::class;
+        }
+        ```
+  - title: 'After, create your controller'
+    terminal: |
+      ```bash [Terminal]
+        php artisan rest:controller UsersController
+      ```
+    code: |
+      ```php [UsersController.php]
+        <?php
+
+        namespace App\Rest\Controllers;
+
+        use App\Rest\Controller;
+
+        class UsersController extends Controller
+        {
+            /**
+            * Fully-qualified resource class name
+            */
+            public static $resource = App\Resources\User::class;
+        }
+        ```
+  - title: 'Finally, register the routes'
+    terminal: |
+      ```php [api.php]
+        use \Lomkit\Rest\Facades\Rest;
+
+        Rest::resource('users', \App\Rest\Controllers\UsersController::class)
+      ```
+    code: |
+      ```bash
+        +--------+----------------------------+-------------------+
+        | Method | URI                        | Name              |
+        +--------+----------------------------+-------------------+
+        | GET    | api/users                  | api.users.details |
+        | POST   | api/users/search           | api.users.search  |
+        | POST   | api/users/actions/{action} | api.users.operate |
+        | POST   | api/users/mutate           | api.users.mutate  |
+        | DELETE | api/users                  | api.users.destroy |
+        +--------+----------------------------+-------------------+
+      ```
+quickstart:
+  title: 'Or use our <span class="text-primary-400">Quick Start</span>'
+  description: 'It generated all the files listed above automatically !'
+  code: |
+    ```bash [Terminal]
+      php artisan rest:quick-start
+    ```

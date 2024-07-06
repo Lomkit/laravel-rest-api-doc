@@ -1,45 +1,60 @@
-const path = require('path');
-
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // https://github.com/nuxt-themes/docus
-  extends: '@nuxt-themes/docus',
-
+  extends: ['@nuxt/ui-pro'],
   modules: [
-    // https://github.com/nuxt-modules/plausible
-    '@nuxtjs/plausible',
-    // https://github.com/nuxt/devtools
-    '@nuxt/devtools',
-    // https://nuxt.studio/docs/projects/setup#requirements-to-use-the-studio-editor
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/ui',
+    '@nuxt/fonts',
     '@nuxthq/studio',
-    // https://nuxt.com/modules/robots
+    'nuxt-og-image',
     '@nuxtjs/robots',
-    // https://www.npmjs.com/package/@funken-studio/sitemap-nuxt-3 -- TODO: replace with official when nuxt3 support released
-    ['@funken-studio/sitemap-nuxt-3', { generateOnBuild: true }]
+    "@nuxtjs/sitemap",
+    "nuxt-gtag"
   ],
+  hooks: {
+    // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
+    'components:extend': (components) => {
+      const globals = components.filter(c => ['UButton', 'UIcon'].includes(c.pascalName))
 
-  publicRuntimeConfig: {
-    NUXT_PUBLIC_STUDIO_TOKENS: process.env.NUXT_PUBLIC_STUDIO_TOKENS
-  },
-
-  content: {
-    highlight: {
-      preload: [
-        'php'
-      ]
+      globals.forEach(c => c.global = true)
     }
   },
-
-  robots: {
-    //
+  css: ['assets/css/main.css'],
+  ui: {
+    icons: ['heroicons', 'mdi']
   },
-
-  sitemap: {
-    hostname: 'https://laravel-rest-api.lomkit.com'
+  content: {
+    highlight: {
+      langs: ['php', 'bash']
+    }
   },
-
-  nitro: {
-    prerender: {
-      autoSubfolderIndex: false
+  colorMode: {
+    disableTransition: true
+  },
+  routeRules: {
+    // Temporary workaround for prerender regression. see https://github.com/nuxt/nuxt/issues/27490
+    '/': { prerender: true },
+    '/api/search.json': { prerender: true }
+  },
+  devtools: {
+    enabled: true
+  },
+  typescript: {
+    strict: false
+  },
+  site: {
+    url: 'https://laravel-rest-api.lomkit.com',
+  },
+  future: {
+    compatibilityVersion: 4
+  },
+  eslint: {
+    config: {
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
     }
   }
 })

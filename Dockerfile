@@ -1,14 +1,11 @@
-FROM node:alpine
+FROM node:lts
 
-WORKDIR /frontend
+WORKDIR /usr/src/app
 
-RUN apk update && apk upgrade
-RUN apk add git
+COPY ./package*.json ./
 
-COPY ./package*.json /frontend/
-
-RUN npm install --include=dev && npm cache clean --force
+RUN npm install
 
 COPY . .
 
-ENV PATH ./node_modules/.bin/:$PATH
+EXPOSE 3000
