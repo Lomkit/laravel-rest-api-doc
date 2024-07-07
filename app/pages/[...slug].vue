@@ -89,7 +89,7 @@ const links = computed(() => [toc?.bottom?.edit && {
             />
 
             <UDivider
-                v-if="sponsors?.length"
+                v-if="sponsors?.links?.length"
                 type="dashed"
             />
 
