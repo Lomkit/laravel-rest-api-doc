@@ -3,8 +3,8 @@ export const useSponsors = () => {
         name: 'XEFI',
         text: 'French leader in IT performance support',
         logo: {
-            light: '/sponsors/xefi-light.png',
-            dark: '/sponsors/xefi-dark.png',
+            light: '/partners/xefi-light.png',
+            dark: '/partners/xefi-dark.png',
         },
         link: 'https://xefi.com'
     }]
