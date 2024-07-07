@@ -6,7 +6,7 @@ definePageMeta({
 })
 
 const route = useRoute()
-const { toc, seo } = useAppConfig()
+const { toc, seo, sponsors } = useAppConfig()
 
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 if (!page.value) {
@@ -87,6 +87,18 @@ const links = computed(() => [toc?.bottom?.edit && {
               :title="toc.bottom.title"
               :links="links"
             />
+
+            <UDivider
+                v-if="sponsors?.length"
+                type="dashed"
+            />
+
+            <UPageLinks
+                :title="sponsors.title"
+                :links="sponsors.links"
+            />
+
+            <SponsorsAds />
           </div>
         </template>
       </UContentToc>

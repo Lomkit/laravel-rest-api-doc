@@ -20,12 +20,14 @@ export default defineAppConfig({
     },
     search: true,
     colorMode: true,
-    links: [{
-      'icon': 'i-mdi-github',
-      'to': 'https://github.com/Lomkit/laravel-rest-api',
-      'target': '_blank',
-      'aria-label': 'Laravel Rest Api on Github'
-    }]
+    links: [
+        {
+        'icon': 'i-mdi-github',
+        'to': 'https://github.com/Lomkit/laravel-rest-api',
+        'target': '_blank',
+        'aria-label': 'Laravel Rest Api on Github'
+      }
+    ]
   },
   footer: {
     credits: 'Copyright © ' + (new Date().getFullYear()),
@@ -49,5 +51,14 @@ export default defineAppConfig({
         target: '_blank'
       }]
     }
+  },
+  sponsors: {
+    title: 'Sponsors',
+    links: [{
+      icon: 'i-mdi-hand-heart-outline',
+      label: 'Become a sponsor',
+      to: 'https://github.com/sponsors/GautierDele',
+      target: '_blank'
+    }]
   }
 })
