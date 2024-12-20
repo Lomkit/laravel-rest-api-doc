@@ -91,7 +91,7 @@ onboardings:
             /**
             * Fully-qualified resource class name
             */
-            public static $resource = App\Resources\User::class;
+            public static $resource = App\Resources\UserResource::class;
         }
         ```
   - title: 'Finally, register the routes'
