@@ -20,7 +20,7 @@
     "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/sitemap": "^5.3.2",
     "nuxt": "^3.12.3",
-    "nuxt-gtag": "^2.0.6",
+    "nuxt-gtag": "^3.0.2",
     "nuxt-og-image": "^3.0.0-rc.56"
   },
   "devDependencies": {
