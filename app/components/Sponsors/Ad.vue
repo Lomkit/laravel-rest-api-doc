@@ -11,7 +11,7 @@ const sponsor = useSponsors()
       :to="sponsor.link"
       target="_blank"
       :ui="{
-        container: 'p-4 lg:p-3 sm:p-4 gap-y-1'
+        container: 'p-4 lg:p-5 sm:p-4 gap-y-1'
       }"
     >
       <template #header>
@@ -21,7 +21,7 @@ const sponsor = useSponsors()
           :alt="sponsor.name"
         />
       </template>
-      <p class="text-sm dark:text-gray-400 text-gray-500 pb-1 text-center">
+      <p class="text-sm dark:text-gray-400 text-gray-500 text-center">
         {{ sponsor.text }}
       </p>
     </UPageCard>
