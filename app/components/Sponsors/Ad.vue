@@ -3,13 +3,17 @@ const sponsor = useSponsors()
 </script>
 
 <template>
-  <div class="space-y-3">
+  <div v-if="sponsor" class="space-y-3">
     <UPageCard
       spotlight
-      :class="'[--spotlight-color:'+sponsor.spotlightColor+']'"
+      :class="'[--spotlight-color:' + sponsor.spotlightColor + '] [--spotlight-size:150px]'"
       :to="sponsor.link"
       target="_blank"
-      :ui="{ header: { padding: 'p-0 sm:p-0' }, rounded: 'rounded', body: { padding: 'p-2 sm:p-2', base: 'text-center' } }"
+      :ui="{
+        header: { padding: 'p-0 sm:p-0' },
+        rounded: 'rounded',
+        body: { padding: 'p-2 sm:p-2', base: 'text-center' }
+      }"
     >
       <template #header>
         <UColorModeImage
