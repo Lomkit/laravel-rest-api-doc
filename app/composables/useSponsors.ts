@@ -1,24 +1,24 @@
 export const useSponsors = () => {
-    const sponsors = [{
-        name: 'XEFI',
-        text: 'French leader in IT performance support',
-        logo: {
-            light: '/partners/xefi-light.png',
-            dark: '/partners/xefi-dark.png',
-        },
-        spotlightColor: '#FF0000',
-        link: 'https://xefi.com'
-    }]
+  const sponsors = [{
+    name: 'XEFI',
+    text: 'French leader in IT performance support',
+    logo: {
+      light: '/partners/xefi-light.png',
+      dark: '/partners/xefi-dark.png'
+    },
+    spotlightColor: '#FF0000',
+    link: 'https://xefi.com'
+  }]
 
-    function getRandomElement<T>(arr: T[]): T | undefined {
-        if (arr.length === 0) {
-            return undefined;
-        }
-
-        const randomIndex = Math.floor(Math.random() * arr.length);
-
-        return arr[randomIndex];
+  function getRandomElement<T>(arr: T[]): T | undefined {
+    if (arr.length === 0) {
+      return undefined
     }
 
-    return computed(() => getRandomElement(sponsors));
+    const randomIndex = Math.floor(Math.random() * arr.length)
+
+    return arr[randomIndex]
+  }
+
+  return computed(() => getRandomElement(sponsors))
 }
