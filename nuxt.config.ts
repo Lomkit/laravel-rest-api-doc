@@ -1,51 +1,53 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
   modules: [
-    '@nuxt/content',
     '@nuxt/eslint',
-    '@nuxt/ui',
-    '@nuxt/fonts',
-    '@nuxthq/studio',
-    'nuxt-og-image',
+    '@nuxt/image',
+    '@nuxt/ui-pro',
     '@nuxtjs/robots',
-    "@nuxtjs/sitemap",
-    "nuxt-gtag"
+    '@nuxtjs/sitemap',
+    '@nuxt/content',
+    'nuxt-og-image',
+    'nuxt-llms',
+    'nuxt-gtag'
   ],
-  hooks: {
-    // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
-    'components:extend': (components) => {
-      const globals = components.filter(c => ['UButton', 'UIcon'].includes(c.pascalName))
 
-      globals.forEach(c => c.global = true)
-    }
-  },
-  css: ['assets/css/main.css'],
-  ui: {
-    icons: ['heroicons', 'mdi']
-  },
-  content: {
-    highlight: {
-      langs: ['php', 'bash']
-    }
-  },
-  colorMode: {
-    disableTransition: true
-  },
-  routeRules: {
-    // Temporary workaround for prerender regression. see https://github.com/nuxt/nuxt/issues/27490
-    '/': { prerender: true },
-    '/api/search.json': { prerender: true }
-  },
   devtools: {
     enabled: true
   },
-  typescript: {
-    strict: false
+
+  css: ['~/assets/css/main.css'],
+
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          langs: ['php', 'bash']
+        },
+        toc: {
+          searchDepth: 1
+        }
+      }
+    }
   },
+
   future: {
     compatibilityVersion: 4
   },
+
+  compatibilityDate: '2024-07-11',
+
+  nitro: {
+    prerender: {
+      routes: [
+        '/'
+      ],
+      crawlLinks: true,
+      // Avoid Github pages trailing slash bug
+      autoSubfolderIndex: false
+    }
+  },
+
   eslint: {
     config: {
       stylistic: {
@@ -53,5 +55,49 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  icon: {
+    provider: 'iconify'
+  },
+
+  llms: {
+    domain: 'https://laravel-rest-api.lomkit.com/',
+    title: 'Laravel Rest Api - Lomkit',
+    description: 'Laravel Rest Api fully integrates with Laravel and creates a powerful API without destructuring your codebase.',
+    full: {
+      title: 'Laravel Rest Api - Full Documentation',
+      description: 'Complete documentation for Laravel Rest Api by Lomkit'
+    },
+    sections: [
+      {
+        title: 'Getting Started',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/getting-started%' }
+        ]
+      },
+      {
+        title: 'Endpoints',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/endpoints%' }
+        ]
+      },
+      {
+        title: 'Resources',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/resources%' }
+        ]
+      },
+      {
+        title: 'Digging Deeper',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/digging-deeper%' }
+        ]
+      }
+    ]
   }
 })

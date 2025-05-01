@@ -1,11 +1,15 @@
 export default defineAppConfig({
   ui: {
-    primary: 'orange',
-    gray: 'slate',
+    colors: {
+      primary: 'orange',
+      neutral: 'slate'
+    }
+  },
+  uiPro: {
     footer: {
-      bottom: {
-        left: 'text-sm text-gray-500 dark:text-gray-400',
-        wrapper: 'border-t border-gray-200 dark:border-gray-800'
+      slots: {
+        root: 'border-t border-(--ui-border)',
+        left: 'text-sm text-(--ui-text-muted)'
       }
     }
   },
@@ -13,39 +17,39 @@ export default defineAppConfig({
     siteName: 'Laravel Rest Api - Lomkit'
   },
   header: {
+    title: '',
+    to: '/',
     logo: {
       alt: '',
-      light: '/logo.svg',
-      dark: '/logo.svg'
+      light: '',
+      dark: ''
     },
     search: true,
     colorMode: true,
-    links: [
-        {
-        'icon': 'i-mdi-github',
-        'to': 'https://github.com/Lomkit/laravel-rest-api',
-        'target': '_blank',
-        'aria-label': 'Laravel Rest Api on Github'
-      }
-    ]
+    links: [{
+      'icon': 'i-simple-icons-github',
+      'to': 'https://github.com/Lomkit/laravel-rest-api',
+      'target': '_blank',
+      'aria-label': 'GitHub'
+    }]
   },
   footer: {
-    credits: 'Copyright © ' + (new Date().getFullYear()),
+    credits: `Copyright © ${new Date().getFullYear()}`,
     colorMode: false,
     links: [{
-      'icon': 'i-mdi-github',
-      'to': 'https://github.com/lomkit/laravel-rest-api',
+      'icon': 'i-simple-icons-github',
+      'to': 'https://github.com/Lomkit/laravel-rest-api',
       'target': '_blank',
-      'aria-label': 'Laravel Rest Api on GitHub'
+      'aria-label': 'Laravel Rest Api on Github'
     }]
   },
   toc: {
     title: 'Table of Contents',
     bottom: {
       title: 'Community',
-      edit: 'https://github.com/lomkit/laravel-rest-api-doc/edit/master/content',
+      edit: 'https://github.com/lomkit/laravel-rest-api-doc/edit/main/content',
       links: [{
-        icon: 'i-heroicons-star',
+        icon: 'i-lucide-star',
         label: 'Star on GitHub',
         to: 'https://github.com/lomkit/laravel-rest-api',
         target: '_blank'

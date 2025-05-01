@@ -3,7 +3,7 @@ name: Deploy Nuxt site to Pages
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
   workflow_dispatch:
 
@@ -46,7 +46,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
