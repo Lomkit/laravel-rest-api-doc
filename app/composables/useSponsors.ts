@@ -6,7 +6,6 @@ export const useSponsors = () => {
       light: '/partners/xefi-light.png',
       dark: '/partners/xefi-dark.png'
     },
-    spotlightColor: '#FF0000',
     link: 'https://xefi.com'
   }]
 

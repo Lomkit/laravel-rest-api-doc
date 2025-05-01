@@ -3,14 +3,15 @@ const sponsor = useSponsors()
 </script>
 
 <template>
-  <div v-if="sponsor" class="space-y-3">
+  <div
+    v-if="sponsor"
+    class="space-y-3"
+  >
     <UPageCard
-      spotlight
-      :class="'[--spotlight-color:' + sponsor.spotlightColor + '] [--spotlight-size:150px]'"
       :to="sponsor.link"
       target="_blank"
       :ui="{
-        container: 'p-4 lg:p-3 sm:p-4 gap-y-1',
+        container: 'p-4 lg:p-3 sm:p-4 gap-y-1'
       }"
     >
       <template #header>
