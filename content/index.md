@@ -1,6 +1,6 @@
 ---
 seo:
-  title: Laravel Rest Api:: Generate powerful Api automatically with Laravel
+  title: "Laravel Rest Api: Generate powerful Api automatically with Laravel"
   description: |
     Fully integrated with Laravel, take the advantage of a 
     powerful API without destructuring your codebase. Secured and customizable, be ready to get in! 
