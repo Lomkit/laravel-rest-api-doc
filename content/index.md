@@ -1,9 +1,9 @@
 ---
 seo:
-  title: Laravel Rest Api - Lomkit
+  title: Laravel Rest Api:: Generate powerful Api automatically with Laravel
   description: |
     Fully integrated with Laravel, take the advantage of a 
-    powerful API without destructuring your codebase.
+    powerful API without destructuring your codebase. Secured and customizable, be ready to get in! 
 ---
 
 :::u-page-hero
