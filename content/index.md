@@ -31,7 +31,7 @@ Fully integrated with Laravel, take the advantage of a powerful API without dest
   :::u-button
   ---
   size: xl
-  to: /getting-started
+  to: /getting-started/installation
   trailing-icon: i-lucide-arrow-right
   ---
   Get started
@@ -297,7 +297,7 @@ ui:
   ---
   color: primary
   size: xl
-  to: /getting-started
+  to: /getting-started/installation
   trailingIcon: i-lucide-arrow-right
   ---
   Get started
