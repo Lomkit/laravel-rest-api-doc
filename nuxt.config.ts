@@ -31,10 +31,6 @@ export default defineNuxtConfig({
     }
   },
 
-  sitemap: {
-    zeroRuntime: true
-  },
-
   experimental: { asyncContext: true },
 
   compatibilityDate: '2024-07-11',
@@ -110,5 +106,9 @@ export default defineNuxtConfig({
         ]
       }
     ]
+  },
+
+  sitemap: {
+    zeroRuntime: true
   }
 })
