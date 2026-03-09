@@ -274,7 +274,7 @@ variant: naked
 Or use our <span class="text-primary">Quick Start</span>
 
 #description
-It generated all the files listed above automatically !
+It generates all the files listed above automatically!
 
 #default
 :::prose-pre
