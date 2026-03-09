@@ -60,7 +60,9 @@ export default defineNuxtConfig({
   },
 
   icon: {
-    provider: 'iconify'
+    clientBundle: {
+      scan: true
+    }
   },
 
   llms: {
