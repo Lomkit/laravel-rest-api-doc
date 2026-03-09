@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/ui-pro',
+    '@nuxt/ui',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxt/content',
@@ -31,9 +31,7 @@ export default defineNuxtConfig({
     }
   },
 
-  future: {
-    compatibilityVersion: 4
-  },
+  experimental: { asyncContext: true },
 
   compatibilityDate: '2024-07-11',
 
@@ -58,7 +56,7 @@ export default defineNuxtConfig({
   },
 
   icon: {
-    provider: 'iconify'
+    provider: 'server'
   },
 
   llms: {
@@ -96,6 +94,13 @@ export default defineNuxtConfig({
         contentCollection: 'docs',
         contentFilters: [
           { field: 'path', operator: 'LIKE', value: '/digging-deeper%' }
+        ]
+      },
+      {
+        title: 'Integrations',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/integrations%' }
         ]
       }
     ]
