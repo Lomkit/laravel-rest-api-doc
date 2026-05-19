@@ -23,7 +23,7 @@
     "@nuxtjs/robots": "5.7.1",
     "@nuxtjs/sitemap": "7.6.0",
     "better-sqlite3": "^12.6.2",
-    "nuxt": "^4.3.1",
+    "nuxt": "^4.4.6",
     "nuxt-gtag": "^4.1.0",
     "nuxt-llms": "0.2.0",
     "nuxt-og-image": "^5.1.13"
