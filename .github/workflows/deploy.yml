@@ -46,7 +46,7 @@ jobs:
         run: npm run generate
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./.output/public
           name: "github-pages"
