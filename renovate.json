@@ -42,6 +42,19 @@
       "enabled": false
     },
     {
+      "description": "TypeScript 7 does not resolve against the current tree, and nuxt already vendors its own TypeScript. Revisit when vue-tsc and nuxt ship support.",
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "npm 12 rejects --package-lock-only with EALLOWREMOTE and blocks install scripts, which leaves better-sqlite3 without its native binding. Stay on the 11.x line that can actually resolve this tree.",
+      "matchDepTypes": ["packageManager"],
+      "matchPackageNames": ["npm"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "description": "Majors land one at a time and always by hand.",
       "matchUpdateTypes": ["major"],
       "automerge": false
