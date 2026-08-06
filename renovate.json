@@ -1,10 +1,63 @@
 {
-  "extends": ["github>nuxt/renovate-config-nuxt"],
-  "lockFileMaintenance": { "enabled": true },
-  "baseBranches": ["main"],
-  "packageRules": [{
-    "matchDepTypes": ["resolutions"],
-    "enabled": false
-  }],
-  "postUpdateOptions": ["pnpmDedupe"]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits"
+  ],
+  "baseBranchPatterns": ["main"],
+  "timezone": "Europe/Paris",
+  "schedule": ["before 6am on monday"],
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on the first day of the month"]
+  },
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "schedule": ["at any time"]
+  },
+  "packageRules": [
+    {
+      "description": "Batch every non-major update into a single PR and let it merge itself once CI is green.",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Batch GitHub Actions bumps separately, they are cheap to review together.",
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "@nuxt/content only accepts better-sqlite3 ^12 as a peer, so hold the major back until it widens the range.",
+      "matchPackageNames": ["better-sqlite3"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "TypeScript 7 does not resolve against the current tree, and nuxt already vendors its own TypeScript. Revisit when vue-tsc and nuxt ship support.",
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "npm 12 rejects --package-lock-only with EALLOWREMOTE and blocks install scripts, which leaves better-sqlite3 without its native binding. Stay on the 11.x line that can actually resolve this tree.",
+      "matchDepTypes": ["packageManager"],
+      "matchPackageNames": ["npm"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "Majors land one at a time and always by hand.",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ]
 }
