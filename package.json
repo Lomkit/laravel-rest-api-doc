@@ -13,11 +13,11 @@
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.3",
-    "@iconify-json/lucide": "^1.2.125",
+    "@iconify-json/lucide": "^1.2.127",
     "@iconify-json/mdi": "^1.2.3",
-    "@iconify-json/simple-icons": "^1.2.93",
-    "@iconify-json/vscode-icons": "^1.2.74",
-    "@nuxt/content": "^3.15.2",
+    "@iconify-json/simple-icons": "^1.2.94",
+    "@iconify-json/vscode-icons": "^1.2.76",
+    "@nuxt/content": "^3.16.0",
     "@nuxt/image": "^2.1.0",
     "@nuxt/ui": "^4.11.0",
     "@nuxtjs/robots": "6.2.0",
@@ -28,18 +28,18 @@
     "nuxt-gtag": "^4.1.0",
     "nuxt-llms": "0.2.0",
     "nuxt-og-image": "^6.7.8",
-    "satori": "^0.33.3"
+    "satori": "^0.33.4"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",
-    "eslint": "^10.9.0",
+    "eslint": "^10.9.1",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.3.11"
   },
   "overrides": {
-    "sharp": "^0.35.3",
+    "sharp": "^0.35.4",
     "esbuild": "^0.28.2",
     "brace-expansion": "^5.0.9"
   },
-  "packageManager": "npm@11.19.0"
+  "packageManager": "npm@11.19.1"
 }
