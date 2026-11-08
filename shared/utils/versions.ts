@@ -51,7 +51,7 @@ export const docsEquivalents: Record<string, string> = {
   '/digging-deeper/responses': '/digging-deeper/responses',
   '/digging-deeper/documentation': '/digging-deeper/openapi',
   '/digging-deeper/precognition': '/digging-deeper/precognition',
-  '/integrations/flutter': '/digging-deeper/integrations'
+  '/integrations/flutter': '/2.x/integrations/flutter'
 }
 
 export function findDocsVersion(path: string): DocsVersion {
