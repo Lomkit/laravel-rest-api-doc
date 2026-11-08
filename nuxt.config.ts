@@ -15,6 +15,11 @@ function latestDocsPaths(): string[] {
 
 const redirects = docsRedirects(latestDocsPaths())
 
+// A version root is a folder on GitHub Pages too (`/2.x` next to `/2.x/...`): write `2.x/index.html` as well as `2.x.html`.
+for (const version of docsVersions.filter(version => version.prefix)) {
+  redirects[`${version.prefix}/`] = version.firstPage
+}
+
 /** Static redirect page: GitHub Pages serves files only, no HTTP redirect. */
 function redirectPage(to: string): string {
   const url = `${siteUrl}${to}`

@@ -39,7 +39,7 @@ const { header } = useAppConfig()
       #left
     >
       <NuxtLink :to="header?.to || '/'">
-        <LogoPro class="w-auto h-8 shrink-0" />
+        <LogoPro class="w-auto h-6 sm:h-8 shrink-0" />
       </NuxtLink>
 
       <DocsVersionSwitcher class="ml-3 hidden sm:inline-flex" />
