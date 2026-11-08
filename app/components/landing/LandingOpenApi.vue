@@ -95,7 +95,7 @@ const methodColor: Record<string, string> = {
           Level 10
         </p>
         <p class="mt-1 text-xs text-muted">
-          Larastan at its highest level on the whole package.
+          Larastan at its highest level on the package source.
         </p>
       </div>
       <div

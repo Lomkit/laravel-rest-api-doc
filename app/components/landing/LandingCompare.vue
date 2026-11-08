@@ -95,7 +95,7 @@ const rows = [
         </h2>
         <p class="mt-4 text-base text-pretty text-muted sm:text-lg">
           A typical hand-written controller for products, which also needs two form requests, a JSON resource and its routes,
-          next to the resource that replaces them, plus one route line.
+          next to the resource that replaces them, plus a controller that names it and one route line.
         </p>
       </LandingReveal>
 

@@ -43,10 +43,10 @@ const sections = [
     eyebrow: 'Declare',
     icon: 'i-lucide-rocket',
     title: 'An API in minutes, not sprints',
-    description: 'Run rest:quick-start, or write a resource by hand: typed fields, relations, scopes, instructions, actions and metrics. One route line registers every endpoint.',
+    description: 'Run rest:quick-start, or write a resource by hand: typed fields, relations, scopes, instructions, actions and metrics. One route line registers its endpoints.',
     points: [
       'Typed fields: ID, Text, Number, Integer, Boolean, Date, DateTime, Enum and Json.',
-      'Generators for resources, controllers, actions, instructions and responses.',
+      'Generators for resources, controllers, policies, actions, instructions, metrics and responses.',
       'What you do not declare is not exposed.'
     ],
     link: { label: 'Write your first resource', to: '/getting-started/quick-start' }
@@ -60,7 +60,7 @@ const sections = [
     points: [
       'A denied check answers 403 before any 422, and before any query.',
       'Each check runs once per request; the abilities you choose stay cached between requests.',
-      'Denials name every refused row with its path, ability and key.'
+      'With the denials renderer, a 403 lists each refused check with its path, ability and key.'
     ],
     link: { label: 'Read about policies', to: '/authorization/policies' }
   },
