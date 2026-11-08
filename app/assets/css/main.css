@@ -28,5 +28,5 @@
 
 /* Wider layout on large screens: the docs used 80rem and left most of a wide screen empty. */
 :root {
-  --ui-container: 96rem;
+  --ui-container: 110rem;
 }
