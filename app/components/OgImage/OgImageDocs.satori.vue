@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{ title?: string, description?: string, headline?: string }>(), {
+const props = withDefaults(defineProps<{ title?: string, description?: string, headline?: string, version?: string }>(), {
   title: 'title',
   description: 'description'
 })
@@ -53,12 +53,24 @@ const description = computed(() => (props.description || '').slice(0, 200))
     </svg>
 
     <div class="pl-[100px]">
-      <p
-        v-if="headline"
-        class="uppercase text-[24px] text-[#FF7F00] mb-4 font-semibold"
+      <div
+        v-if="headline || version"
+        class="flex items-center mb-4 text-[24px] font-semibold"
       >
-        {{ headline }}
-      </p>
+        <span
+          v-if="headline"
+          class="uppercase text-[#FF7F00]"
+        >
+          {{ headline }}
+        </span>
+        <span
+          v-if="version"
+          class="text-[#E4E4E7] border border-[#E4E4E7] rounded-full px-4 py-1"
+          :class="headline ? 'ml-6' : ''"
+        >
+          {{ version }}
+        </span>
+      </div>
       <h1
         v-if="title"
         class="m-0 text-[75px] font-semibold mb-4 text-white flex items-center"

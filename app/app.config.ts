@@ -4,6 +4,13 @@ export default defineAppConfig({
       primary: 'orange',
       neutral: 'slate'
     },
+    prose: {
+      pre: {
+        slots: {
+          filename: 'text-default text-sm/6 min-w-0 truncate'
+        }
+      }
+    },
     footer: {
       slots: {
         root: 'border-t border-default',

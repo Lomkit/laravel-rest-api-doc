@@ -19,3 +19,14 @@
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
 }
+
+/* Long inline code (class names, error paths) wraps instead of widening the page on small screens. */
+:not(pre) > code {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Wider layout on large screens: the docs used 80rem and left most of a wide screen empty. */
+:root {
+  --ui-container: 110rem;
+}

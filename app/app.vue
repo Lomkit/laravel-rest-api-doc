@@ -1,10 +1,9 @@
 <script setup lang="ts">
 const { seo } = useAppConfig()
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'))
-const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('docs'), {
-  server: false
-})
+const { navigation, files } = await useDocsNavigation()
+
+useSiteSeo()
 
 useHead({
   meta: [
@@ -23,8 +22,6 @@ useSeoMeta({
   ogSiteName: seo?.siteName,
   twitterCard: 'summary_large_image'
 })
-
-provide('navigation', navigation)
 </script>
 
 <template>

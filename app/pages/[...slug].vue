@@ -10,13 +10,15 @@ const route = useRoute()
 const { toc, sponsors } = useAppConfig()
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 
-const { data: page } = await useAsyncData(route.path, () => queryCollection('docs').path(route.path).first())
+const version = findDocsVersion(route.path)
+
+const { data: page } = await useAsyncData(route.path, () => queryCollection(version.collection).path(route.path).first())
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
-  return queryCollectionItemSurroundings('docs', route.path, {
+  return queryCollectionItemSurroundings(version.collection, route.path, {
     fields: ['description']
   })
 })
@@ -36,7 +38,18 @@ const headline = computed(() => findPageHeadline(navigation?.value, page.value?.
 defineOgImageComponent('DocsSatori', {
   title,
   description,
-  headline: headline.value
+  headline: headline.value,
+  version: version.name
+})
+
+const equivalent = useDocsEquivalent()
+const latestPath = computed(() => version.name === latestDocsVersion.name ? undefined : equivalent(latestDocsVersion))
+
+// The stem of a version served at the root does not hold its content folder.
+const sourceStem = computed(() => {
+  const stem = page.value?.stem ?? ''
+
+  return stem.startsWith(`${version.folder}/`) ? stem : `${version.folder}/${stem}`
 })
 
 const links = computed(() => {
@@ -45,7 +58,7 @@ const links = computed(() => {
     links.push({
       icon: 'i-lucide-external-link',
       label: 'Edit this page',
-      to: `${toc.bottom.edit}/${page?.value?.stem}.${page?.value?.extension}`,
+      to: `${toc.bottom.edit}/${sourceStem.value}.${page?.value?.extension}`,
       target: '_blank'
     })
   }
@@ -56,6 +69,18 @@ const links = computed(() => {
 
 <template>
   <UPage v-if="page">
+    <UAlert
+      v-if="latestPath"
+      color="warning"
+      variant="subtle"
+      icon="i-lucide-history"
+      :title="`You are reading the ${version.name} documentation. ${latestDocsVersion.name} is the latest version.`"
+      :actions="[{ label: `Go to ${latestDocsVersion.name}`, to: latestPath, color: 'warning', variant: 'solid', trailingIcon: 'i-lucide-arrow-right' }]"
+      orientation="horizontal"
+      class="mt-8"
+      data-docs-version-notice
+    />
+
     <UPageHeader
       :title="page.title"
       :description="page.description"
@@ -108,8 +133,6 @@ const links = computed(() => {
               :title="sponsors.title"
               :links="sponsors.links"
             />
-
-            <SponsorsAd />
           </div>
         </template>
       </UContentToc>
