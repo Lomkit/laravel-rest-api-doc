@@ -41,6 +41,8 @@ const { header } = useAppConfig()
       <NuxtLink :to="header?.to || '/'">
         <LogoPro class="w-auto h-8 shrink-0" />
       </NuxtLink>
+
+      <DocsVersionSwitcher class="ml-3 hidden sm:inline-flex" />
     </template>
 
     <template #right>
@@ -61,6 +63,8 @@ const { header } = useAppConfig()
     </template>
 
     <template #body>
+      <DocsVersionSwitcher class="mb-4" />
+
       <UContentNavigation
         highlight
         :navigation="navigation"
