@@ -13,7 +13,7 @@
       <div class="mx-auto max-w-4xl text-center">
         <div class="lr-rise">
           <UButton
-            to="/getting-started/upgrade-guide"
+            to="/getting-started/upgrade-guide#upgrading-to-31-from-30"
             color="neutral"
             variant="outline"
             size="sm"
@@ -21,11 +21,11 @@
             trailing-icon="i-lucide-arrow-right"
           >
             <UBadge
-              label="3.0"
+              label="3.1"
               size="sm"
               class="rounded-full"
             />
-            <span class="text-muted">Search engines, metrics, confirmations and more</span>
+            <span class="text-muted">Choose the operations each relation accepts</span>
           </UButton>
         </div>
 
