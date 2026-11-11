@@ -1,242 +1,165 @@
 <script setup lang="ts">
-const props = defineProps<{
-  visible?: boolean
-}>()
+import { detailsHints, detailsRequest, detailsResponse, frontendPoints } from '~/data/landing/frontend'
 
-const calls = [
-  {
-    method: 'GET',
-    url: '/api/products?with=authorizations',
-    caption: 'The details endpoint answers for the signed-in user: show the button, or not.',
-    code: `"authorizations": {
-  "viewAny": { "allowed": true, "message": null },
-  "create": { "allowed": true, "message": null }
-}`
-  },
-  {
-    method: 'POST',
-    url: '/api/products/search',
-    caption: 'Send "selects" of id and name with "gates": ["update", "delete"]: each row carries the answers of your policy, message included.',
-    code: `"data": [{
-  "id": 2,
-  "name": "Floor lamp",
-  "gates": {
-    "authorized_to_update": {
-      "allowed": true, "message": null
-    },
-    "authorized_to_delete": {
-      "allowed": false,
-      "message": "This product has orders."
-    }
-  }
-}]`
-  },
-  {
-    method: 'POST',
-    url: '/api/products/mutate · Precognition: true',
-    caption: 'Laravel Precognition validates as the user types, with the rules and the label of the field: Integer::make(\'price\')->label(\'unit price\')->rules(\'min:0\'). Nothing is written.',
-    code: `{
-  "message": "The unit price field must be at least 0.",
-  "errors": {
-    "mutate.0.attributes.price": [
-      "The unit price field must be at least 0."
-    ]
-  }
-}`
-  }
-]
+const active = ref<string | null>(null)
+const hint = computed(() => active.value ? detailsHints[active.value]! : null)
+const highlight = computed(() => hint.value ? linesWith(detailsResponse, hint.value.needles) : [])
+const operators = ['=', '!=', 'like', 'not like', 'ilike', 'not ilike', 'in', 'not in']
 
-const active = ref(0)
-let timer: ReturnType<typeof setInterval> | undefined
-let motion = false
-
-function start() {
-  stop()
-
-  if (motion) {
-    timer = setInterval(() => (active.value = (active.value + 1) % calls.length), 3800)
+function bind(key: string) {
+  return {
+    'data-key': key,
+    'class': ['lf-hint', { 'is-active': active.value === key }],
+    'aria-pressed': active.value === key,
+    'onMouseenter': () => (active.value = key),
+    'onFocus': () => (active.value = key),
+    'onClick': () => (active.value = key)
   }
 }
-
-function stop() {
-  clearInterval(timer)
-  timer = undefined
-}
-
-function choose(index: number) {
-  active.value = index
-  start()
-}
-
-onMounted(() => {
-  motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  if (props.visible) {
-    start()
-  }
-})
-
-watch(() => props.visible, value => (value ? start() : stop()))
-
-onBeforeUnmount(stop)
 </script>
 
 <template>
-  <div class="grid items-start gap-4 sm:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-    <div class="overflow-hidden rounded-xl border border-default bg-default shadow-xl shadow-black/5 dark:bg-neutral-950/80 dark:shadow-black/40">
-      <div class="flex items-center justify-between border-b border-default px-4 py-3">
-        <p class="text-sm font-semibold text-highlighted">
-          Products
-        </p>
-        <span
-          class="lr-target flex items-center gap-1 rounded-md bg-primary px-2.5 py-1 text-xs font-medium text-inverted"
-          :class="{ 'is-target': active === 0 }"
-        >
-          <UIcon
-            name="i-lucide-plus"
-            class="size-3.5"
+  <section
+    id="frontend"
+    class="relative scroll-mt-16 py-14 sm:py-20"
+  >
+    <UContainer>
+      <div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
+        <div class="lg:col-span-5">
+          <LandingHeading
+            eyebrow="For your frontend"
+            icon="i-lucide-app-window"
+            title="Your interface asks the API what it may do"
+            text="The details endpoint describes a resource for the signed-in user: fields, operators, rules, page sizes, actions and permissions. Build lists and forms from it instead of copying your rules into JavaScript."
           />
-          New product
-        </span>
-      </div>
-
-      <ul class="divide-y divide-default text-sm">
-        <li class="flex items-center gap-3 px-4 py-3">
-          <div class="min-w-0 flex-1">
-            <p class="truncate font-medium text-highlighted">
-              Desk lamp
-            </p>
-            <p class="text-xs text-dimmed">
-              Lighting · 39
-            </p>
-          </div>
-          <span class="rounded-md border border-default px-2 py-1 text-xs text-toned">Edit</span>
-          <span class="rounded-md border border-default px-2 py-1 text-xs text-toned">Delete</span>
-        </li>
-        <li class="px-4 py-3">
-          <div class="flex items-center gap-3">
-            <div class="min-w-0 flex-1">
-              <p class="truncate font-medium text-highlighted">
-                Floor lamp
-              </p>
-              <p class="text-xs text-dimmed">
-                Lighting · 129
-              </p>
-            </div>
-            <span
-              class="lr-target rounded-md border border-default px-2 py-1 text-xs text-toned"
-              :class="{ 'is-target': active === 1 }"
-            >Edit</span>
-            <span
-              class="lr-target cursor-not-allowed rounded-md border border-dashed border-default px-2 py-1 text-xs text-dimmed line-through decoration-dimmed/60"
-              :class="{ 'is-target': active === 1 }"
-            >Delete</span>
-          </div>
-          <p
-            class="mt-2 flex items-center gap-1.5 text-xs transition-colors duration-300"
-            :class="active === 1 ? 'text-primary' : 'text-dimmed'"
+          <LandingReveal
+            as="ul"
+            class="mt-8 space-y-4"
+            :delay="80"
           >
-            <UIcon
-              name="i-lucide-info"
-              class="size-3.5 shrink-0"
-            />
-            This product has orders.
-          </p>
-        </li>
-      </ul>
-
-      <div class="border-t border-default bg-elevated/40 px-4 py-4">
-        <label
-          class="text-xs font-medium text-toned"
-          for="lr-price"
-        >Unit price</label>
-        <div
-          class="lr-target mt-1.5 rounded-md"
-          :class="{ 'is-target': active === 2 }"
-        >
-          <input
-            id="lr-price"
-            value="-5"
-            readonly
-            tabindex="-1"
-            class="w-full rounded-md border border-error/60 bg-default px-3 py-1.5 font-mono text-sm text-highlighted outline-none"
-          >
+            <li
+              v-for="point in frontendPoints"
+              :key="point.link"
+              class="flex gap-3 text-sm text-toned"
+            >
+              <UIcon
+                :name="point.icon"
+                class="mt-0.5 size-4 shrink-0 text-primary"
+              />
+              <span>
+                {{ point.text }}
+                <ULink
+                  :to="point.link"
+                  class="font-medium text-highlighted underline decoration-primary/50 underline-offset-4 hover:decoration-primary"
+                >Read more</ULink>
+              </span>
+            </li>
+          </LandingReveal>
         </div>
-        <p class="mt-1.5 text-xs text-error">
-          The unit price field must be at least 0.
-        </p>
-      </div>
-    </div>
 
-    <div class="flex min-w-0 flex-col gap-2">
-      <div
-        class="flex flex-col gap-1.5"
-        role="tablist"
-        aria-label="Requests"
-      >
-        <button
-          v-for="(call, index) in calls"
-          :key="call.url"
-          type="button"
-          role="tab"
-          :aria-selected="index === active"
-          class="flex items-center gap-2 rounded-lg border px-3 py-2 text-left font-mono text-[11px] transition-colors duration-300"
-          :class="index === active ? 'border-primary/40 bg-primary/5 text-highlighted' : 'border-default bg-default/50 text-muted hover:text-highlighted dark:bg-neutral-950/40'"
-          @click="choose(index)"
+        <LandingReveal
+          class="grid min-w-0 gap-4 grid-cols-1 lg:col-span-7"
+          :delay="120"
+          @mouseleave="active = null"
         >
-          <span
-            class="font-semibold"
-            :class="call.method === 'GET' ? 'text-sky-600 dark:text-sky-400' : 'text-amber-600 dark:text-amber-400'"
-          >{{ call.method }}</span>
-          <span class="truncate">{{ call.url }}</span>
-        </button>
-      </div>
+          <div class="lf-mock rounded-xl border border-default bg-default p-4 shadow-xl shadow-black/5 sm:p-5 dark:bg-neutral-950/80 dark:shadow-black/40">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <p class="text-sm font-semibold text-highlighted">
+                Artworks
+              </p>
+              <div class="flex flex-wrap items-center gap-2 text-xs">
+                <button
+                  type="button"
+                  v-bind="bind('filter')"
+                >
+                  <UIcon
+                    name="i-lucide-filter"
+                    class="size-3.5"
+                  />
+                  Title
+                  <span class="lf-select">like</span>
+                  <span class="text-muted">“lamp”</span>
+                </button>
+                <button
+                  type="button"
+                  v-bind="bind('limits')"
+                >
+                  Rows <span class="lf-select">25</span>
+                </button>
+              </div>
+            </div>
+            <div class="mt-4 overflow-hidden rounded-lg border border-default text-sm">
+              <div class="flex items-center justify-between bg-elevated/60 px-3 py-2 text-xs font-semibold text-muted">
+                <button
+                  type="button"
+                  v-bind="bind('sort')"
+                >
+                  Title
+                  <UIcon
+                    name="i-lucide-arrow-up-down"
+                    class="size-3.5"
+                  />
+                </button>
+                <span>Medium</span>
+              </div>
+              <div class="border-t border-default px-3 py-2 text-muted">
+                The operators of the filter, from the details:
+                <span class="mt-1.5 flex flex-wrap gap-1">
+                  <span
+                    v-for="operator in operators"
+                    :key="operator"
+                    class="rounded border border-default px-1.5 font-mono text-[11px] text-toned"
+                  >{{ operator }}</span>
+                </span>
+              </div>
+            </div>
+            <div class="mt-4 grid gap-1.5 grid-cols-1">
+              <button
+                type="button"
+                v-bind="bind('label')"
+                class="justify-self-start"
+              >
+                Title <span class="text-red-600 dark:text-red-400">*</span>
+              </button>
+              <button
+                type="button"
+                v-bind="bind('rules')"
+                class="lf-input"
+              >
+                <span class="text-muted">Required on creation</span>
+                <span class="ml-auto font-mono text-[11px] text-muted">0 / 120</span>
+              </button>
+            </div>
+            <p
+              class="mt-4 min-h-[2.5rem] text-sm text-muted"
+              aria-live="polite"
+            >
+              {{ hint ? hint.text : 'Point at a part of this screen to see the key of the details it comes from.' }}
+            </p>
+          </div>
 
-      <div class="relative flex h-[330px] flex-col overflow-hidden rounded-xl border border-default bg-default shadow-xl shadow-black/5 dark:bg-neutral-950/80 dark:shadow-black/40">
-        <Transition
-          mode="out-in"
-          enter-active-class="transition duration-300 ease-out"
-          enter-from-class="opacity-0 translate-y-1"
-          leave-active-class="transition duration-150 ease-in"
-          leave-to-class="opacity-0"
-        >
-          <div
-            :key="active"
-            class="flex h-full flex-col"
-          >
-            <div class="flex-1 overflow-x-auto py-3 text-[10.5px] leading-relaxed sm:text-[11px]">
+          <LandingWindow>
+            <template #title>
+              <span class="flex min-w-0 items-center gap-2 font-mono text-xs">
+                <span class="rounded px-1.5 font-bold bg-sky-500/15 text-sky-700 dark:text-sky-300">GET</span>
+                <span class="truncate text-highlighted">{{ detailsRequest.slice(4) }}</span>
+              </span>
+            </template>
+            <template #actions>
+              <span class="rounded-full border border-default px-2 font-mono text-[10px] whitespace-nowrap text-muted">excerpt: title</span>
+            </template>
+            <div class="overflow-x-auto py-3 text-[11px] leading-[1.65] sm:text-xs">
               <LandingCode
-                :code="calls[active]!.code"
+                :code="detailsResponse"
                 lang="json"
+                :highlight="highlight"
               />
             </div>
-            <p class="border-t border-default px-4 py-3 text-xs text-muted">
-              {{ calls[active]!.caption }}
-            </p>
-          </div>
-        </Transition>
+          </LandingWindow>
+        </LandingReveal>
       </div>
-    </div>
-  </div>
+    </UContainer>
+  </section>
 </template>
 
-<style scoped>
-.lr-target {
-  transition: box-shadow 0.35s ease, transform 0.35s ease;
-}
-
-.lr-target.is-target {
-  box-shadow: 0 0 0 2px var(--ui-bg), 0 0 0 4px var(--ui-primary);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .lr-target.is-target {
-    animation: lr-ping 1.6s ease-out 1;
-  }
-}
-
-@keyframes lr-ping {
-  0% { box-shadow: 0 0 0 2px var(--ui-bg), 0 0 0 4px var(--ui-primary), 0 0 0 4px color-mix(in oklab, var(--ui-primary) 50%, transparent); }
-  100% { box-shadow: 0 0 0 2px var(--ui-bg), 0 0 0 4px var(--ui-primary), 0 0 0 14px transparent; }
-}
-</style>
+<style scoped src="./landing-frontend.css"></style>

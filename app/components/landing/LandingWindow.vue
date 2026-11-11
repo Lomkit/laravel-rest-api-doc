@@ -2,6 +2,7 @@
 defineProps<{
   title?: string
   icon?: string
+  note?: string
 }>()
 </script>
 
@@ -30,6 +31,10 @@ defineProps<{
         </div>
       </slot>
       <div class="ml-auto flex items-center gap-2">
+        <span
+          v-if="note"
+          class="rounded-full border border-default px-2 font-mono text-[10px] whitespace-nowrap text-muted"
+        >{{ note }}</span>
         <slot name="actions" />
       </div>
     </div>
