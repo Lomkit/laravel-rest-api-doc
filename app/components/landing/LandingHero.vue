@@ -13,7 +13,7 @@
       <div class="mx-auto max-w-4xl text-center">
         <div class="lr-rise">
           <UButton
-            to="/getting-started/upgrade-guide#upgrading-to-31-from-30"
+            to="/getting-started/upgrade-guide#upgrading-to-32-from-31"
             color="neutral"
             variant="outline"
             size="sm"
@@ -21,11 +21,11 @@
             trailing-icon="i-lucide-arrow-right"
           >
             <UBadge
-              label="3.1"
+              label="3.2"
               size="sm"
               class="rounded-full"
             />
-            <span class="text-muted">Choose the operations each relation accepts</span>
+            <span class="text-muted">Input-only fields and pivot persisters</span>
           </UButton>
         </div>
 
