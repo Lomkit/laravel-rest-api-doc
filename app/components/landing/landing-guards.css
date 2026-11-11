@@ -1,0 +1,160 @@
+.lg-case {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 0.75rem;
+  background: var(--ui-bg);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ui-text-toned);
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lg-case:hover { border-color: var(--ui-border-accented); }
+.lg-case:focus-visible { outline: 2px solid var(--ui-primary); outline-offset: 2px; }
+
+.lg-case.is-current {
+  border-color: color-mix(in oklab, var(--ui-primary) 55%, transparent);
+  background: color-mix(in oklab, var(--ui-primary) 7%, var(--ui-bg));
+  color: var(--ui-text-highlighted);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ui-primary) 12%, transparent);
+}
+
+.lg-track {
+  --lg-rail: 1.25rem;
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 1rem;
+  background:
+    radial-gradient(80% 120% at 0% 0%, color-mix(in oklab, var(--ui-primary) 7%, transparent), transparent 60%),
+    var(--ui-bg-elevated);
+  padding: 1.25rem 1.25rem 1.25rem 3.75rem;
+}
+
+.lg-track::before {
+  content: '';
+  position: absolute;
+  top: 2.25rem;
+  bottom: 2.25rem;
+  left: calc(var(--lg-rail) + 0.9375rem);
+  width: 2px;
+  border-radius: 2px;
+  background: var(--ui-border-accented);
+}
+
+.lg-stage {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: opacity 0.3s ease;
+}
+
+.lg-node {
+  position: absolute;
+  top: 0;
+  left: calc(-3.75rem + var(--lg-rail));
+  z-index: 1;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ui-border);
+  border-radius: 9999px;
+  background: var(--ui-bg);
+  color: var(--ui-text-muted);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.lg-stage.is-idle .lg-node { opacity: 0.6; }
+
+.lg-stage.is-checking .lg-node {
+  border-color: var(--ui-primary);
+  color: var(--ui-primary);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--ui-primary) 18%, transparent);
+}
+
+.lg-stage.is-passed .lg-node {
+  border-color: transparent;
+  background: var(--color-emerald-600, #059669);
+  color: #fff;
+}
+
+.lg-stage.is-stopped .lg-node {
+  border-color: transparent;
+  background: var(--color-red-600, #dc2626);
+  color: #fff;
+  box-shadow: 0 0 0 5px color-mix(in oklab, #dc2626 22%, transparent);
+  animation: lg-shake 0.4s ease;
+}
+
+.lg-packet {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 9999px;
+  background: var(--ui-primary);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--ui-primary) 25%, transparent), 0 0 16px 2px var(--ui-primary);
+  opacity: 0;
+}
+
+
+@media (min-width: 768px) {
+  .lg-track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 0;
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+
+  .lg-track::before {
+    top: 2.5rem;
+    bottom: auto;
+    left: 12.5%;
+    right: 12.5%;
+    width: auto;
+    height: 2px;
+  }
+
+  .lg-stage {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.75rem 0.5rem 0;
+  }
+
+  .lg-node { left: 50%; margin-left: -1rem; }
+
+  .lg-packet { display: block; top: calc(2.5rem - 0.375rem); }
+
+  .lr-motion .lg-packet {
+    opacity: 1;
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease;
+    transform: translateX(calc(1.25rem + (var(--pos) + 0.5) * 25cqw - 0.4375rem));
+  }
+
+  .lr-motion .lg-packet.is-stopped,
+  .lr-motion .lg-packet.is-through { opacity: 0; }
+
+  .lg-track { container-type: inline-size; }
+}
+
+@keyframes lg-shake {
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-node,
+  .lg-stage { transition: none; }
+
+  .lg-stage.is-stopped .lg-node { animation: none; }
+}
