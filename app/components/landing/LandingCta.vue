@@ -33,7 +33,12 @@ const steps = [
               <span class="flex size-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-inverted">{{ index + 1 }}</span>
               {{ step.label }}
             </span>
-            <code class="font-mono text-xs break-words text-muted">{{ step.command }}</code>
+            <code class="font-mono text-xs text-muted">
+              <template
+                v-for="word in step.command.split(' ')"
+                :key="word"
+              ><span class="whitespace-nowrap">{{ word }}</span>{{ ' ' }}</template>
+            </code>
           </li>
         </ol>
 
