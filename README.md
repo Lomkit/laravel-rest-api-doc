@@ -1,116 +1,45 @@
-![nuxt-ui-docs-social-card](https://github.com/nuxt-ui-pro/docs/assets/739984/f64e13d9-9ae0-4e03-bf7f-6be4c36cd9ba)
+# Laravel Rest Api documentation
 
-# Nuxt UI Pro - Docs template
+Source of [laravel-rest-api.lomkit.com](https://laravel-rest-api.lomkit.com), the documentation of [Laravel Rest Api](https://github.com/Lomkit/laravel-rest-api).
 
-[![Nuxt UI Pro](https://img.shields.io/badge/Made%20with-Nuxt%20UI%20Pro-00DC82?logo=nuxt.js&labelColor=020420)](https://ui.nuxt.com/pro)
-[![Nuxt Studio](https://img.shields.io/badge/Open%20in%20Nuxt%20Studio-18181B?&logo=nuxt.js&logoColor=3BB5EC)](https://nuxt.studio/themes/docs)
-
-- [Live demo](https://docs-template.nuxt.dev)
-- [Documentation](https://ui.nuxt.com/getting-started/installation/pro/nuxt)
-- [Clone on Nuxt Studio](https://content.nuxt.com/templates/docs)
-
-[![Deploy to NuxtHub](https://hub.nuxt.com/button.svg)](https://hub.nuxt.com/new?repo=nuxt-ui-pro/docs)
-
-## Quick Start
-
-```bash [Terminal]
-npx nuxi init -t github:nuxt-ui-pro/docs
-```
+Built with [Nuxt](https://nuxt.com), [Nuxt UI](https://ui.nuxt.com) and [Nuxt Content](https://content.nuxt.com). The pages live in `content/`: `content/3.x` for the current version, served at the root, and `content/2.x` for the previous one, served under `/2.x`.
 
 ## Setup
 
-Make sure to install the dependencies:
-
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Development
 
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
+## Checks
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npm run lint
+npm run typecheck
 ```
 
-Locally preview production build:
+## Static build
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+npm run generate
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+The site is generated into `.output/public` and deployed to GitHub Pages on every push to `main`.
 
-## Nuxt Studio integration
+## Versions and releases
 
-Studio is an intuitive CMS interface to edit your Nuxt Content websites.
+- `shared/utils/versions.ts` lists the documentation versions. A new major adds its folder there and in `content.config.ts`.
+- `shared/utils/package-info.ts` holds the facts about the package that `llms.txt` and the structured data of the pages use. Update `release` with each release, and the requirements with `composer.json`.
 
-It take advantage of the Preview API included in Nuxt Content to propose the best editing experience for your content files. Editors can benefit from a user-friendly interface to edit their Markdown, YAML or JSON files.
+## Markdown, llms.txt and MCP
 
-You can import your project on the platform without any extra setup.
+The static build publishes `llms.txt`, `llms-full.txt` (current version only) and a Markdown copy of every page under `/raw/<path>.md`.
 
-However to enable the live preview on the platform, you just need to activate studio in the content configuration of your `nuxt.config.ts` file.
-
-```ts [nuxt.config.ts]
-export default defineNuxtConfig({
-  content: {
-    preview: {
-      api: 'https://api.nuxt.studio'
-    }
-  }
-})
-```
-
-Read more on [Nuxt Studio docs](https://content.nuxt.com/studio/setup).
-
-## Renovate integration
-
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.
+The deployed site is static and has no `/mcp` endpoint. To give an assistant the docs over MCP, use GitMCP or Context7 as the [Use with AI](https://laravel-rest-api.lomkit.com/digging-deeper/ai-skill) page explains. `context7.json` sets what Context7 indexes.
