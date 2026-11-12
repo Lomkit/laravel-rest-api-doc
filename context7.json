@@ -1,5 +1,7 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
+  "url": "https://context7.com/lomkit/laravel-rest-api-doc",
+  "public_key": "pk_I3j3p8IZd3KHQP7UoVzdW",
   "projectTitle": "Laravel Rest Api",
   "description": "Laravel package (lomkit/laravel-rest-api) that turns Eloquent models into a JSON API with search, nested writes, actions and metrics, checked against Laravel policies and documented in OpenAPI.",
   "folders": ["content/3.x"],
