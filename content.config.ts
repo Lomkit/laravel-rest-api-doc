@@ -3,6 +3,7 @@ import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { docsVersions, latestDocsVersion, type DocsVersion } from './shared/utils/versions'
 
 const docsSchema = z.object({
+  updatedAt: z.string().optional(),
   links: z.array(z.object({
     label: z.string(),
     icon: z.string(),
