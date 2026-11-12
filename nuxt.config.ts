@@ -174,7 +174,7 @@ export default defineNuxtConfig({
         description: [
           `These docs describe ${packageInfo.name} ${latestDocsVersion.name}, the current version (latest release ${packageInfo.release}). Write ${latestDocsVersion.name} code from them, not 2.x code.`,
           'Every page below is a Markdown copy of the site page. The package ships a Laravel Boost skill named `laravel-rest-api`.',
-          `Assistants that support MCP can also read these docs through GitMCP: https://gitmcp.io/Lomkit/laravel-rest-api.`
+          `Assistants that support MCP can also read these docs through GitMCP: https://lomkit.gitmcp.io/laravel-rest-api-doc.`
         ].join(' '),
         links: [
           {
