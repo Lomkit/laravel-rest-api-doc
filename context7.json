@@ -1,0 +1,18 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Laravel Rest Api",
+  "description": "Laravel package (lomkit/laravel-rest-api) that turns Eloquent models into a JSON API with search, nested writes, actions and metrics, checked against Laravel policies and documented in OpenAPI.",
+  "folders": ["content/3.x"],
+  "excludeFolders": ["content/2.x", "app", "server", "shared", "public", ".github"],
+  "excludeFiles": ["README.md"],
+  "rules": [
+    "These docs cover Laravel Rest Api 3.x (lomkit/laravel-rest-api), which requires PHP 8.3+ and Laravel 13.30+. Do not write 2.x code: 3.x fields are typed objects such as Text::make('name'), never plain strings.",
+    "Install with composer require lomkit/laravel-rest-api. php artisan rest:quick-start writes the resources, controllers, policies and routes of the models you choose.",
+    "Declare one resource per model in app/Rest/Resources and a thin controller in app/Rest/Controllers with public static string $resource; register its routes with Rest::resource('products', ProductsController::class).",
+    "Only what a resource declares exists for clients: fields(), relations(), scopes(), actions(), instructions(). A field, relation or scope that the resource does not declare gives a 422.",
+    "Read rows with POST /api/{resource}/search and a JSON body under the search key (filters, sorts, selects, includes, aggregates, page, limit). Write with POST /api/{resource}/mutate and a mutate list of operations.",
+    "Every endpoint checks the Laravel policies of each resource a request reaches and of each row it writes. Keep tenant and visibility constraints in perimeterQuery() of the resource.",
+    "Prefer an action (php artisan rest:action) or an instruction to a custom controller method, and never add Route::apiResource() for a model that a resource already exposes.",
+    "Request sizes and nesting depths are limited by rest.limits in config/rest.php. Do not spell out default values in request payloads."
+  ]
+}

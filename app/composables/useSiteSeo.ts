@@ -13,17 +13,23 @@ export function useSiteSeo() {
     ],
     script: () => route.path === '/'
       ? [{
+          key: 'ld-software',
           type: 'application/ld+json',
           innerHTML: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'SoftwareSourceCode',
-            'name': 'Laravel Rest Api',
-            'description': 'Laravel Rest Api fully integrates with Laravel and creates a powerful API without destructuring your codebase.',
+            'name': packageInfo.name,
+            'alternateName': packageInfo.composerName,
+            'description': packageInfo.description,
             'url': `${siteUrl}/`,
-            'codeRepository': 'https://github.com/Lomkit/laravel-rest-api',
-            'programmingLanguage': 'PHP',
-            'runtimePlatform': 'Laravel',
-            'license': 'https://opensource.org/licenses/MIT',
+            'codeRepository': packageInfo.repository,
+            'programmingLanguage': {
+              '@type': 'ComputerLanguage',
+              'name': 'PHP'
+            },
+            'runtimePlatform': `PHP ${packageInfo.php}+, Laravel ${packageInfo.laravel}+`,
+            'softwareVersion': packageInfo.release,
+            'license': packageInfo.license,
             'author': {
               '@type': 'Organization',
               'name': 'Lomkit',
