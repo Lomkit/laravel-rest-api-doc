@@ -6,7 +6,7 @@
 export const packageInfo = {
   name: 'Laravel Rest Api',
   composerName: 'lomkit/laravel-rest-api',
-  release: '3.2.2',
+  release: '3.3.0',
   php: '8.3',
   laravel: '13.30',
   repository: 'https://github.com/Lomkit/laravel-rest-api',
