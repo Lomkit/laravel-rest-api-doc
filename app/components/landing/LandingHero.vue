@@ -14,7 +14,7 @@
         <div class="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
           <div class="lr-rise">
             <UButton
-              to="/getting-started/upgrade-guide#upgrading-to-33-from-32"
+              to="/getting-started/upgrade-guide#upgrading-to-34-from-33"
               color="neutral"
               variant="outline"
               size="sm"
@@ -22,11 +22,11 @@
               trailing-icon="i-lucide-arrow-right"
             >
               <UBadge
-                label="3.3"
+                label="3.4"
                 size="sm"
                 class="rounded-full"
               />
-              <span class="text-muted">Typed inputs and checked has-many sync</span>
+              <span class="text-muted">Actions and metrics declared by their class</span>
             </UButton>
           </div>
 
