@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{ title?: string, description?: string, headline?: string, version?: string }>(), {
-  title: 'title',
-  description: 'description'
-})
+const props = defineProps<{ title?: string, description?: string, headline?: string, version?: string }>()
 
-const title = computed(() => (props.title || '').slice(0, 60))
-const description = computed(() => (props.description || '').slice(0, 200))
+const shortTitle = computed(() => (props.title || '').slice(0, 60))
+const shortDescription = computed(() => (props.description || '').slice(0, 200))
 </script>
 
 <template>
@@ -72,16 +69,16 @@ const description = computed(() => (props.description || '').slice(0, 200))
         </span>
       </div>
       <h1
-        v-if="title"
+        v-if="shortTitle"
         class="m-0 text-[75px] font-semibold mb-4 text-white flex items-center"
       >
-        <span>{{ title }}</span>
+        <span>{{ shortTitle }}</span>
       </h1>
       <p
-        v-if="description"
+        v-if="shortDescription"
         class="text-[32px] text-[#E4E4E7] leading-tight w-[700px]"
       >
-        {{ description }}
+        {{ shortDescription }}
       </p>
     </div>
   </div>
