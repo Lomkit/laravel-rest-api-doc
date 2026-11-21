@@ -191,7 +191,8 @@ export default defineNuxtConfig({
         ['Writing', 'writing'],
         ['Actions and Metrics', 'actions-and-metrics'],
         ['Authorization', 'authorization'],
-        ['Digging Deeper', 'digging-deeper']
+        ['Digging Deeper', 'digging-deeper'],
+        ['Extensions', 'extensions']
       ].map(([title, folder]) => ({
         title: `${title} (${latestDocsVersion.name})`,
         contentCollection: latestDocsVersion.collection,

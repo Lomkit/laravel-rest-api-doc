@@ -9,6 +9,7 @@ export const detailsResponse = `{"data": {
     {
       "name": "title", "label": "Title", "type": "text",
       "nullable": false, "select": true, "sort": true,
+      "group": false, "measures": [],
       "filter": {"operators": [
         "=", "!=", "like", "not like", "ilike", "not ilike", "in", "not in"
       ]},
