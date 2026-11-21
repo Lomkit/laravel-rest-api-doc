@@ -30,3 +30,17 @@
 :root {
   --ui-container: 110rem;
 }
+
+/*
+ * Light mode: white text on orange-500, the default primary of solid buttons,
+ * is 2.8:1, and orange-500 links on white too. Orange-700 keeps the brand and
+ * reaches 5.2:1. Dark mode keeps the default orange-400, under dark text.
+ * `.dark` is declared again because it has the same specificity as `:root`.
+ */
+:root {
+  --ui-primary: var(--ui-color-primary-700);
+}
+
+.dark {
+  --ui-primary: var(--ui-color-primary-400);
+}
