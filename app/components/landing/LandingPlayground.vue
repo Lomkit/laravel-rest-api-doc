@@ -154,7 +154,7 @@ function toggle(key: OptionKey) {
 
 .lp-option.is-on {
   border-color: color-mix(in oklab, var(--ui-primary) 55%, transparent);
-  background: color-mix(in oklab, var(--ui-primary) 7%, var(--ui-bg));
+  background: color-mix(in oklab, var(--brand-primary) 7%, var(--ui-bg));
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--ui-primary) 12%, transparent);
 }
 

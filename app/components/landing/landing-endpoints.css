@@ -30,7 +30,7 @@
 
 .le-tab.is-current {
   border-color: color-mix(in oklab, var(--ui-primary) 40%, transparent);
-  background: color-mix(in oklab, var(--ui-primary) 9%, var(--ui-bg));
+  background: color-mix(in oklab, var(--brand-primary) 9%, var(--ui-bg));
   color: var(--ui-text-highlighted);
 }
 

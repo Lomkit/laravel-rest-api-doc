@@ -48,7 +48,7 @@ $ php artisan boost:install`
                   v-for="(operation, index) in operations"
                   :key="operation.summary"
                   class="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm"
-                  :class="index === 1 ? 'bg-primary/10 text-highlighted' : 'text-muted'"
+                  :class="index === 1 ? 'bg-(--brand-primary)/10 text-highlighted' : 'text-muted'"
                 >
                   <span
                     class="w-12 shrink-0 rounded px-1 text-center font-mono text-[10px] font-bold"

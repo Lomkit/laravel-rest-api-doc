@@ -73,13 +73,13 @@
   inset-block: 0;
   left: 0;
   width: 2px;
-  background: var(--ui-primary);
+  background: var(--brand-primary);
   transform: scaleY(0);
   transition: transform 0.5s ease;
 }
 
 .hs-route.is-on {
-  background: color-mix(in oklab, var(--ui-primary) 8%, var(--ui-bg-elevated));
+  background: color-mix(in oklab, var(--brand-primary) 8%, var(--ui-bg-elevated));
 }
 
 .hs-route.is-on::before { transform: none; }
@@ -133,7 +133,7 @@
 
 .hs-row.is-active .hs-row-inner {
   border-color: color-mix(in oklab, var(--ui-primary) 70%, transparent);
-  background: color-mix(in oklab, var(--ui-primary) 9%, var(--ui-bg));
+  background: color-mix(in oklab, var(--brand-primary) 9%, var(--ui-bg));
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--ui-primary) 16%, transparent), 0 8px 24px -12px var(--ui-primary);
 }
 

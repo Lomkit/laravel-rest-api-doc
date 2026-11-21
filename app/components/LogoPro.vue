@@ -139,7 +139,7 @@
       </g>
     </g>
     <g
-      fill="var(--ui-primary)"
+      fill="var(--brand-primary)"
       fill-opacity="1"
     >
       <g transform="translate(270.602299, 54.265287)">
