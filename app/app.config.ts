@@ -16,6 +16,13 @@ export default defineAppConfig({
         root: 'border-t border-default',
         left: 'text-sm text-muted'
       }
+    },
+    button: {
+      compoundVariants: [{
+        color: 'primary',
+        variant: 'solid',
+        class: 'hover:bg-primary/90 active:bg-primary/90'
+      }]
     }
   },
   seo: {

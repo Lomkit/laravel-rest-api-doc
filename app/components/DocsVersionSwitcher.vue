@@ -21,7 +21,7 @@ const links = computed(() => docsVersions.map(docsVersion => ({
       :label="link.name"
       :to="link.to"
       :color="link.active ? 'primary' : 'neutral'"
-      :variant="link.active ? 'subtle' : 'outline'"
+      :variant="link.active ? 'solid' : 'outline'"
       :aria-current="link.active ? 'true' : undefined"
       class="font-semibold"
     />

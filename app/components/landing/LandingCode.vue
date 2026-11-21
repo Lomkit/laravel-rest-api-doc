@@ -219,8 +219,8 @@ const caretLine = computed(() => visibleLines.value.length - 1)
 }
 
 .lc-line.is-highlighted {
-  background: color-mix(in oklab, var(--ui-primary) 14%, transparent);
-  box-shadow: inset 2px 0 0 var(--ui-primary);
+  background: color-mix(in oklab, var(--brand-primary) 14%, transparent);
+  box-shadow: inset 2px 0 0 var(--brand-primary);
 }
 
 .lc-gutter {

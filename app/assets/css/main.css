@@ -30,3 +30,23 @@
 :root {
   --ui-container: 110rem;
 }
+
+/*
+ * Light mode: white on orange-500, the default primary of solid buttons, is 2.8:1,
+ * and orange-500 links on white too. No palette step keeps the orange hue and
+ * reaches 4.5:1, so the primary is orange-500's hue made darker: 5.6:1 with white.
+ * Dark mode keeps the default orange-400, under dark text.
+ * `.dark` is declared again because this override sits outside any CSS layer,
+ * while Nuxt UI's `.dark` lives in `@layer theme` and loses to any unlayered `:root`.
+ * `--brand-primary` keeps the bright orange where it only marks: the logotype
+ * and the faint tints behind highlighted lines and selected items.
+ */
+:root, .light {
+  --ui-primary: oklch(53% 0.17 47.6);
+  --brand-primary: var(--ui-color-primary-500);
+}
+
+.dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --brand-primary: var(--ui-color-primary-400);
+}
